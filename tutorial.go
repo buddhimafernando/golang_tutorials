@@ -1,19 +1,26 @@
-// a must to add before starting a new file
 package main
 
-// a standard module allows you to display msgs and texts in the console
-import "fmt"
-
-
+import (
+	"fmt"
+	"math/rand"
+)
+	
 // Functions for exercise 6 - Temperature converter
 func f_to_c(farenheit, answer float32) {
 	answer = (farenheit - 32) * 5/9
 	fmt.Println("The temparature in Celcius is : ",answer,"°C")
 }
-
 func c_to_f(celcius,answer float32) {
 	answer = (celcius * 9/5)+32
 	fmt.Println("The temparature in Farenheit is : ",answer,"°F")
+}
+
+// Function for exercise 7 - Loan calculator  
+func loan_calculation(amount, rate, time float64){
+	var monthly_payment float64
+
+	monthly_payment = (amount * rate)/100
+	fmt.Print("\nMonthly loan payment : ",monthly_payment/time)
 }
 
 func main() {
@@ -74,47 +81,76 @@ func main() {
 	// 	fmt.Print("Invalid option")
 	// }
 
-	// // Exercise 5 - Number guessing game
-	// fmt.Println()
+	// Exercise 5 - Number guessing game
+	fmt.Println()
+	var random_num, guess int
+	random_num = rand.Intn(10)
+
+	fmt.Print("You got 3 chances to guess the number between 0 and 10\n")
+
+	for i:=0; i<3; i++{
+		fmt.Print("Please enter your guess no ",i+1," : ")
+		fmt.Scan(&guess)
+		if (guess==random_num){
+			fmt.Println("Congratualations! You guessed correctly.")
+			break
+		}else{
+			fmt.Println("Incorrect guess. Let's try again.")
+		}
+	}
+	fmt.Print("\nThe correct number is : ", random_num)
 
 	// Exercise 6 - Temperature converter
-	fmt.Println()
+	// fmt.Println()
 
-	var farenheit, celcius, answer float32
-	var choice int
+	// var farenheit, celcius, answer float32
+	// var choice int
 
-	fmt.Println("Please choose the conversion you want to perform\nFarenheit to Celcius - 1\nCelcius to Farenheit - 2")
-	fmt.Print("Please enter the option : ")
-	fmt.Scan(&choice)
-	if (choice == 1){
-		fmt.Print("\nPlease enter the temparature in Fahrenheit : ")
-		fmt.Scan(&farenheit)
-		f_to_c(farenheit,answer)
-	} else if (choice == 2){
-		fmt.Print("\nPlease enter the temparature in Celcius : ")
-		fmt.Scan(&celcius)
-		c_to_f(celcius,	answer)
-	} else{
-		fmt.Print("\nInvalid option")
-	}
+	// fmt.Println("Please choose the conversion you want to perform\nFarenheit to Celcius - 1\nCelcius to Farenheit - 2")
+	// fmt.Print("Please enter the option : ")
+	// fmt.Scan(&choice)
+	// if (choice == 1){
+	// 	fmt.Print("\nPlease enter the temparature in Fahrenheit : ")
+	// 	fmt.Scan(&farenheit)
+	// 	f_to_c(farenheit,answer)
+	// } else if (choice == 2){
+	// 	fmt.Print("\nPlease enter the temparature in Celcius : ")
+	// 	fmt.Scan(&celcius)
+	// 	c_to_f(celcius,	answer)
+	// } else{
+	// 	fmt.Print("\nInvalid option")
+	// }
 
-	// Exercise 7 - Loan calculator
-	fmt.Println()
+	// // Exercise 7 - Loan calculator
+	// fmt.Println()
+
+	// var amount, rate, time float64
+	// fmt.Print("Please enter the pincipal amount of your loan : ")
+	// fmt.Scan(&amount)
+	// fmt.Print("Please enter the rate of interest percentage : ")
+	// fmt.Scan(&rate)
+	// fmt.Print("Please enter the time period(months): ")
+	// fmt.Scan(&time)
+
+	// loan_calculation(amount, rate, time)
 
 	// Exercise 8 - Text analyzer
 	fmt.Println()
 
-	//Exercise 9 - Simple web server
-	fmt.Println()
+	
 
-	// Exercise 10 - Password checker
-	fmt.Println()
 
-	// Exercise 11 - random password checker
-	fmt.Println()
+	// //Exercise 9 - Simple web server
+	// fmt.Println()
 
-	// Exercise 12 - File I/O
-	fmt.Println()
+	// // Exercise 10 - Password checker
+	// fmt.Println()
+
+	// // Exercise 11 - random password checker
+	// fmt.Println()
+
+	// // Exercise 12 - File I/O
+	// fmt.Println()
 
 }
 
