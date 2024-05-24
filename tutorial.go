@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"strings"
 )
+
 // Functions
 
 // Functions for exercise 6 - Temperature converter
@@ -59,6 +60,18 @@ func find_character(letter,text string){
 	fmt.Printf("Character '%c' count = %d\n", char, char_count)
 }	
 
+// Function for exercise 10 - Password checker
+func password_checker(password string){
+	if len(password) < 8 {
+		fmt.Println("Password must contain atleast 8 characters")
+	} else {
+		for range password {
+			
+		}
+	}
+}
+
+// Main method
 
 func main() {
 
@@ -192,6 +205,16 @@ func main() {
 
 	// Exercise 10 - Password checker
 	fmt.Println()
+
+	var password string
+
+	fmt.Println("Make sure the password has\n- Atleast 8 characters\n- Atleast 1 uppercase and lowercase letter\n- Atleast 1 number\n")
+	fmt.Println("Please enter a password : ")
+	fmt.Scan(&password)
+
+	password_checker(password)
+
+
 
 	// Exercise 11 - random password checker
 	fmt.Println()
