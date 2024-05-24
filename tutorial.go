@@ -7,6 +7,7 @@ import (
 	//"os"
 	"strings"
 	"unicode"
+	"github.com/sethvargo/go-password/password"
 )
 
 // Functions
@@ -84,6 +85,29 @@ func password_checker(password string){
 	}else{
 		fmt.Print("Password is invalid.")
 	}
+}
+
+func random_password(length,symbols,digits int, upper,repeat string){
+	var setUpper,setRepeat bool
+	if length <= symbols + digits {
+		fmt.Println("The number of symbols and digits should be atleast equal to the length of the password.")
+	} else {
+		if upper == "yes" {
+			setUpper = true
+		}else{
+			setUpper = false
+		}
+
+		if repeat == "yes" {
+			setRepeat = true
+		}else {
+			setRepeat = false
+		}
+	}
+
+	rand_pass := password.MustGenerate(length, symbols, digits, setUpper, setRepeat)
+	fmt.Println(setUpper , setRepeat)
+	fmt.Println("\nRandom password: ", rand_pass)
 }
 
 // Main method
@@ -218,19 +242,37 @@ func main() {
 	// fmt.Println()
 	
 
-	// Exercise 10 - Password checker
-	fmt.Println()
+	// // Exercise 10 - Password checker
+	// fmt.Println()
 
-	var password string
+	// var password string
 
-	fmt.Println("Make sure the password has\n- Atleast 8 characters\n- Atleast 1 uppercase and lowercase letter\n- Atleast 1 number")
-	fmt.Print("Please enter a password : ")
-	fmt.Scan(&password)
+	// fmt.Println("Make sure the password has\n- Atleast 8 characters\n- Atleast 1 uppercase and lowercase letter\n- Atleast 1 number")
+	// fmt.Print("Please enter a password : ")
+	// fmt.Scan(&password)
 
-	password_checker(password)
+	// password_checker(password)
 
 	// Exercise 11 - random password checker
 	fmt.Println()
+
+	// using must Generate package shortcut
+	var length,symbols,digits  int
+	var upper, repeat string
+
+	fmt.Println("To generate a random password according to your need , please fill the below sections ;")
+	fmt.Print("Please enter the length of the password : ")
+	fmt.Scan(&length)
+	fmt.Print("Please enter the number of digits you need in the password : ")
+	fmt.Scan(&digits)
+	fmt.Print("Please enter the bnumber of symbols you need in the password : ")
+	fmt.Scan(&symbols)
+	fmt.Print("Please enter whether you need any uppercase letters in your password (yes/no) : ")
+	fmt.Scan(&upper)
+	fmt.Print("Please enter whether you allow to repeat the characters in the password (yes/no) : ")
+	fmt.Scan(&repeat)
+
+	random_password(length,symbols,digits,upper,repeat)
 
 	// Exercise 12 - File I/O
 	fmt.Println()
