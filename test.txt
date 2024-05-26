@@ -1,0 +1,1 @@
+Welcome to exercise 12. Here we have to get knowledge on file handling. We need to read from an existing file and write the processed data to another file.

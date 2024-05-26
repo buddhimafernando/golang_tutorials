@@ -3,13 +3,14 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"html/template"
+	"io/ioutil"
+	"log"
 	"math/rand"
 	"net/http"
 	"os"
 	"strings"
 	"unicode"
-	"log"
-	"html/template"
 
 	"github.com/sethvargo/go-password/password"
 )
@@ -131,6 +132,46 @@ func random_password(length,symbols,digits int, upper,repeat string){
 	rand_pass := password.MustGenerate(length, symbols, digits, setUpper, setRepeat)
 	fmt.Println(setUpper , setRepeat)
 	fmt.Println("\nRandom password: ", rand_pass)
+}
+
+// Function for exercise 12 - count number of lines in the data retrieved from the file
+func data_processing(data []byte, fileName string){
+
+	fmt.Printf("\nFile Name: %s", fileName)
+    fmt.Printf("\nSize: %d bytes", len(data))
+    fmt.Printf("\nData: %s", data)
+
+	new_data:= string(data)
+	
+	// Number of lines in the data
+	lines := strings.Split(new_data, ".")
+	fmt.Printf("Number of lines: %d\n", len(lines))
+
+	// Find a specific word in the data
+	var word string
+
+	fmt.Print("Please enter the word you need to find : ")
+	fmt.Scan(&word)
+
+	if strings.Contains(new_data, word) {
+		fmt.Printf("The word '%s' is found in the file\n", word)
+	}else{
+		fmt.Printf("The word '%s' is not found in the file\n", word)
+	}
+}
+
+// Function for exercise 12 - write to a file
+func write_to_file(){
+	fmt.Println("\nWriting to a file in Go lang")
+
+	file, err := os.Create("new_file.txt")
+     
+    if err != nil {
+        log.Fatalf("failed creating file: %s", err)
+    }
+
+	defer file.Close()
+
 }
 
 // Main method
@@ -303,5 +344,16 @@ func main() {
 	// Exercise 12 - File I/O
 	fmt.Println()
 
+	// Reading a file
+	fmt.Printf("Reading a file in Go lang\n")
+    fileName := "test.txt"
+
+	data, err := ioutil.ReadFile("test.txt")
+    if err != nil {
+        log.Panicf("failed reading data from file: %s", err)
+	}
+
+	data_processing(data,fileName)
+	write_to_file()
 }
 
