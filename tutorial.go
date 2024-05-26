@@ -4,9 +4,13 @@ import (
 	"bufio"
 	"fmt"
 	"math/rand"
+	"net/http"
 	"os"
 	"strings"
 	"unicode"
+	"log"
+	"html/template"
+
 	"github.com/sethvargo/go-password/password"
 )
 
@@ -61,6 +65,25 @@ func find_character(letter,text string){
 
 	fmt.Printf("Character '%c' count = %d\n", char, char_count)
 }	
+
+// Function for exercise 9 - Simple web server
+func handler(w http.ResponseWriter, r *http.Request) {
+
+	// HTML template
+	tmpl, err := template.ParseFiles("page.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	// Execute the template
+	err = tmpl.Execute(w, nil)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+}
 
 // Function for exercise 10 - Password checker
 func password_checker(password string){
@@ -240,7 +263,10 @@ func main() {
 
 	//Exercise 9 - Simple web server
 	fmt.Println()
-	
+
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+
 
 	// Exercise 10 - Password checker
 	fmt.Println()
